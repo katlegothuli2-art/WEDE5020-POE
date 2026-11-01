@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The organisation name is ASHARI JEWELS which specialises in jewellery pieces, Ashari Jewels was founded in 2022 in Cullinan, Gauteng by a young entrepreneur who had a passion for creating jewellery pieces but then she realised she could do more as she saw how expensive they were and that the longer one wore a jewellery piece the metal material would tarnish, turn the skin green and irritate people because of hf sweat and oils. Furthermore, her main goal was to make jewellery that was comfortable and could be worn for long without causing skin irritation and she analysed that majority of jewellery shops did not cater for men and younger men and also focused on making her own jewellery pieces to be tarnish free, gender-neutral and chic at the same time. ">
+    <meta name="keywords" content="Ashari Jewels is a luxury handcrafted jewellery brand that offers a wide range of exquisite pieces, including bracelets, necklaces, and more. Explore our collection and find the perfect piece to elevate your style.">
+    <title>Cart- Ashari Jewels</title>
+</head>
+<body>
+
+    <header>Ashari Jewels</header>
+    
+    <header>
+        <center>
+<table cellpadding="15" cellspacing="0" border="0" style="border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; width:100%; background:white;">
+    <tr>
+        <td align="center">
+            <nav>
+            <div style="text-align: center; background: white; padding:15px 0; border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5;">
+            <a href="index.html" style="text-decoration: none; color:black;"font-weight:bold;font-size:12px; letter-spacing:1px; margin:0 20px;">Home</a>
+            <a href="about.html" style="text-decoration: none; color:black;"font-weight:bold;font-size:12px; letter-spacing:1px; margin:0 20px;">About</a>
+            <a href="services.html" style="text-decoration: none; color:black;"font-weight:bold;font-size:12px; letter-spacing:1px; margin:0 20px;">Services</a>
+            <a href="contact.html" style="text-decoration: none; color:black;"font-weight:bold;font-size:12px; letter-spacing:1px; margin:0 20px;">Contact</a>
+            <a href="products.html" style="text-decoration: none; color:black;"font-weight:bold;font-size:12px; letter-spacing:1px; margin:0 20px;">Products</a>
+            <a href="cart.html" style="text-decoration: none; color:black;"font-weight:bold;font-size:12px; letter-spacing:1px; margin:0 20px;">Cart (<span id="cart-count">0</span>)</a>
+            </nav>
+        </td>
+    </tr>
+</table>
+</center>
+        </td>
+    </div>
+
+    <h1 style="text-align:center; color:white; margin-top: 30px;">CART</h1>
+
+    <div id="cart-box">
+        <div id="cart-items"></div>
+        <hr>
+        <h2 id="total">Total: R0</h2>
+    </div>
+    <div style="text-align:center;">
+        <button class="black" onclick="clearCart()">Clear Cart</button>
+        <a href="products.html"><button>Continue Shopping</button></a>
+    
+    </div>
+    
+    <script>
+    let cart = JSON.parse(localStorage.getItem('ashariCart')) || [];
+    let itemsDiv = document.getElementById('cart-items');
+    let total=0;
+    document.getElementById('cart-count').textContent = cart.length;
+
+    if (cart.length === 0) {
+        itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+    }else {
+        cart.forEach(item => {
+            let itemDiv = document.createElement('div');
+            itemDiv.textContent = item.name + " - R" + item.price;
+            itemsDiv.appendChild(itemDiv);
+            total += item.price;
+            itemsDiv.innerHTML += "<p><b>Total: R" + total + "</b></p>";
+        });
+    }
+    document.getElementById('total').textContent = "Total: R" + total;
+    function clearCart() {
+        localStorage.removeItem('ashariCart');
+        location.reload(); }
+        function removeItem(i){
+            cart.splice(i, 1);
+            localStorage.setItem('ashariCart', JSON.stringify(cart));
+            location.reload();
+        }
+        </script>
+</body>
+</html>
